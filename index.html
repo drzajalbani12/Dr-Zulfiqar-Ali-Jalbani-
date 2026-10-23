@@ -3,39 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr Zulfiqar Ali Jalbani - Sindhi AI PRO</title>
+<title>Dr Zulfiqar Ali Jalbani - Sindhi AI ULTIMATE</title>
 <style>
 body{font-family:Arial;background:#e8f5e9;margin:0;padding:15px;display:flex;justify-content:center}
-.box{background:white;max-width:600px;width:100%;border-radius:20px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,0.1);border-top:6px solid #1b7a3d}
-h1{text-align:center} h3{text-align:center;color:#1b7a3d}
-input{width:100%;padding:14px;border:2px solid #ccc;border-radius:10px;box-sizing:border-box}
-button{width:100%;margin-top:12px;background:#1b7a3d;color:white;padding:14px;border:none;border-radius:10px;font-size:18px;font-weight:bold}
-#ans{margin-top:15px;background:#f1f8f1;padding:15px;border-radius:10px;border-left:4px solid #1b7a3d;display:none;white-space:pre-wrap}
-#load{display:none;text-align:center;color:#1b7a3d;margin-top:10px}
+.box{background:white;max-width:650px;width:100%;border-radius:20px;padding:25px;box-shadow:0 5px 20px rgba(0,0,0,0.1);border-top:6px solid #1b7a3d}
+h1{text-align:center;margin:0} h3{text-align:center;color:#1b7a3d}
+input{width:100%;padding:14px;border:2px solid #ccc;border-radius:10px;box-sizing:border-box;margin-top:10px}
+button{width:100%;margin-top:12px;background:#1b7a3d;color:white;padding:14px;border:none;border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer}
+#ans{margin-top:15px;background:#f1f8f1;padding:15px;border-radius:10px;border-left:5px solid #1b7a3d;display:none;white-space:pre-wrap;line-height:1.6}
+#load{display:none;text-align:center;color:#1b7a3d;margin-top:12px;font-weight:bold}
+.small{text-align:center;color:#666;font-size:12px;margin-top:10px}
 </style>
 </head>
 <body>
 <div class="box">
 <h1>Dr. Zulfiqar Ali Jalbani</h1>
-<h3>Sindhi AI Assistant - PRO</h3>
-<input id="q" placeholder="Sawal likho... Sindhi boli bare me">
+<h3>Sindhi AI Assistant - ULTIMATE</h3>
+<input id="q" placeholder="Sawal likho... e.g. Sindhi boli ji tareekh">
 <button onclick="ask()">Jawab Hasil Karo</button>
-<div id="load">AI soch raha hai...</div>
+<div id="load">AI jawab likh raha hai... 3-5 second ⏳</div>
 <div id="ans"></div>
+<div class="small">No Limit • Fast • Powered by AI</div>
 </div>
 <script>
 async function ask(){
 let qq=document.getElementById('q').value.trim();
 let a=document.getElementById('ans');
 let l=document.getElementById('load');
-if(!qq){alert('Sawal likho');return;}
-l.style.display='block';a.style.display='none';
+if(!qq){alert('Meharbani kare sawal likho');return;}
+l.style.display='block';a.style.display='none';a.innerText='';
+let prompt="You are Dr Zulfiqar's Sindhi AI expert. Answer in Roman Sindhi simple, respectful, helpful. Question: "+qq;
 try{
-let prompt="You are Sindhi AI expert Dr Zulfiqar, answer in Roman Sindhi simple, respectful. Question: "+qq;
-let r=await fetch('https://text.pollinations.ai/'+encodeURIComponent(prompt));
-let t=await r.text();
-a.style.display='block';a.innerText=t;
-}catch(e){a.style.display='block';a.innerText='Internet slow hai, dobara koshish karo. Sawal: '+qq;}
+let res=await fetch('https://ai.hackclub.com/chat/completions',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({model:'qwen/qwen3-32b',messages:[{role:'user',content:prompt}]})
+});
+let data=await res.json();
+let text=data.choices && data.choices[0] ? data.choices[0].message.content : '';
+if(!text) throw new Error('empty');
+a.style.display='block';a.innerText=text;
+}catch(e){
+try{
+let r2=await fetch('https://text.pollinations.ai/'+encodeURIComponent(prompt));
+let t2=await r2.text();
+if(t2.includes('Free limit reached')){
+a.style.display='block';
+a.innerText='Meharbani kare 30 second intezar kare, phir se koshish kayo. Server thoro busy aahe. \n\nHik dafa sawal: '+qq;
+}else{
+a.style.display='block';a.innerText=t2;
+}
+}catch(e2){
+a.style.display='block';
+a.innerText='Internet slow aahe. Sawal: '+qq+' \nDobara koshish kayo.';
+}
+}
 l.style.display='none';
 }
 </script>
