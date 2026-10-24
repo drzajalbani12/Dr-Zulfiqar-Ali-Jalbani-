@@ -2,357 +2,712 @@
 <!DOCTYPE html>
 <html lang="sd" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="سنڌي الفابيٽ، لغت، ادب ۽ تاريخ لاءِ سنڌي AI">
-<title>ڊاڪٽر ذوالفقار علي جلباڻي | سنڌي AI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#075e42">
 
-<style>
-* { box-sizing: border-box; }
+  <title>ڊاڪٽر ذوالفقار علي جلباڻي | سنڌي AI</title>
 
-body {
-  margin: 0;
-  padding: 18px 10px;
-  background: #f0f7f1;
-  color: #173b27;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-.container {
-  max-width: 760px;
-  margin: auto;
-  padding: 20px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 5px 20px #0002;
-}
-.profile-photo {
-  width: 140px;
-  height: 140px;
-  display: block;
-  margin: auto auto 12px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #168044;
-}
-h1, h2 { color: #08763b; line-height: 1.7; }
-h1 { font-size: 27px; }
-h2 { font-size: 21px; margin-bottom: 8px; }
-.subtitle { line-height: 2; color: #52665a; margin-bottom: 20px; }
+  <meta name="description" content="سنڌي ٻولي، ادب، تاريخ ۽ ثقافت بابت سوالن جا جواب حاصل ڪريو. سنڌي الفابيٽ ۽ سنڌي ڊڪشنري پڻ استعمال ڪريو.">
 
-textarea {
-  width: 100%;
-  min-height: 100px;
-  padding: 13px;
-  font-family: inherit;
-  font-size: 17px;
-  border: 1px solid #b8d5c0;
-  border-radius: 12px;
-  text-align: right;
-}
-button {
-  padding: 11px 14px;
-  margin: 4px;
-  border: 0;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 16px;
-  cursor: pointer;
-}
-button:disabled { opacity: .6; }
-.ask {
-  width: 100%;
-  background: #08763b;
-  color: white;
-  margin: 10px 0;
-}
-.secondary { background: #e3f2e7; color: #075e30; }
+  <style>
+    :root {
+      --green: #08734f;
+      --dark-green: #064b35;
+      --light-green: #e9f7ef;
+      --gold: #e6bd55;
+      --text: #17352a;
+      --muted: #60766b;
+      --white: #ffffff;
+      --border: #d8e9df;
+    }
 
-.section {
-  margin-top: 25px;
-  padding: 15px;
-  border: 1px solid #d6e9da;
-  border-radius: 14px;
-}
-.alphabet {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
-  gap: 7px;
-  margin-top: 15px;
-}
-.letter {
-  background: #e3f2e7;
-  color: #075e30;
-  font-size: 25px;
-  min-height: 52px;
-  margin: 0;
-  border: 1px solid #c9e2d0;
-}
-.letter:focus, .letter:hover {
-  background: #08763b;
-  color: white;
-}
-#letterInfo {
-  margin-top: 14px;
-  padding: 12px;
-  border-radius: 10px;
-  background: #f4f8f4;
-  line-height: 2;
-  min-height: 50px;
-}
-#answer {
-  margin-top: 16px;
-  padding: 15px;
-  min-height: 55px;
-  background: #f4f8f4;
-  border-radius: 12px;
-  text-align: right;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  line-height: 2;
-}
-.note { font-size: 13px; color: #64766a; line-height: 1.9; }
-.footer { margin-top: 20px; color: #68796d; font-size: 13px; line-height: 2; }
+    * {
+      box-sizing: border-box;
+    }
 
-@media (max-width: 450px) {
-  .container { padding: 13px; }
-  .alphabet { grid-template-columns: repeat(5, 1fr); }
-}
-</style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans Arabic", "Noto Naskh Arabic",
+        "Segoe UI", Arial, sans-serif;
+      background: #f4faf6;
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    button, textarea, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #064b35, #0b865b);
+      color: white;
+      text-align: center;
+      padding: 34px 16px 40px;
+      border-bottom: 5px solid var(--gold);
+    }
+
+    .profile-photo {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      background: #e7f3eb;
+      display: block;
+      margin: 0 auto 12px;
+      box-shadow: 0 5px 20px #0003;
+    }
+
+    .hero h1 {
+      margin: 8px 0;
+      font-size: clamp(24px, 5vw, 36px);
+      line-height: 1.6;
+    }
+
+    .hero p {
+      margin: 5px auto;
+      max-width: 700px;
+      color: #e6f7ec;
+    }
+
+    .tagline {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 16px;
+      border: 1px solid #ffffff70;
+      border-radius: 30px;
+      color: #fff6d5;
+    }
+
+    .container {
+      max-width: 900px;
+      width: calc(100% - 28px);
+      margin: 24px auto;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 18px #174a3010;
+    }
+
+    h2 {
+      color: var(--dark-green);
+      margin: 0 0 12px;
+      font-size: 23px;
+    }
+
+    .description {
+      color: var(--muted);
+      margin-top: -4px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 125px;
+      resize: vertical;
+      padding: 14px;
+      border: 1px solid #b8d5c4;
+      border-radius: 12px;
+      background: #fcfffd;
+      color: var(--text);
+      outline: none;
+      line-height: 2;
+    }
+
+    textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px #08734f18;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 17px;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      filter: brightness(0.95);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: var(--light-green);
+      color: var(--dark-green);
+      border: 1px solid var(--border);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #392b08;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .samples {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .sample {
+      border: 1px solid var(--border);
+      background: #f0f8f3;
+      color: var(--dark-green);
+      border-radius: 25px;
+      padding: 7px 12px;
+      font-size: 14px;
+    }
+
+    .answer {
+      min-height: 70px;
+      padding: 16px;
+      background: #f3faf5;
+      border-right: 4px solid var(--green);
+      border-radius: 10px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 2.1;
+    }
+
+    .status {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    .alphabet {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .letter {
+      border: 1px solid #cce4d5;
+      background: #f2faf5;
+      color: var(--dark-green);
+      min-height: 58px;
+      border-radius: 11px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .letter:hover,
+    .letter.selected {
+      background: var(--green);
+      color: white;
+    }
+
+    .letter-info {
+      margin-top: 15px;
+      background: var(--light-green);
+      padding: 12px;
+      border-radius: 10px;
+      min-height: 48px;
+    }
+
+    .dictionary {
+      text-align: center;
+      background: linear-gradient(135deg, #e9f7ef, #fff9e7);
+    }
+
+    .dictionary p {
+      margin-top: 0;
+    }
+
+    .notice {
+      background: #fff9e8;
+      border: 1px solid #f0dfad;
+      border-radius: 10px;
+      padding: 12px;
+      color: #6b5114;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #063d2c;
+      color: #e4f3e9;
+      text-align: center;
+      padding: 22px 14px;
+      margin-top: 35px;
+    }
+
+    footer p {
+      margin: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 16px;
+      }
+
+      .hero {
+        padding-top: 26px;
+      }
+
+      .profile-photo {
+        width: 125px;
+        height: 125px;
+      }
+
+      .buttons .btn {
+        flex: 1 1 100%;
+      }
+
+      .alphabet {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
-<main class="container">
 
-  <img class="profile-photo"
-       src="./zulfiqar.jpg"
-       alt="ڊاڪٽر ذوالفقار علي جلباڻي"
-       onerror="this.style.display='none'">
+  <header class="hero">
+    <!-- تصوير جو نالو GitHub ۾ بلڪل ساڳيو هجڻ گھرجي -->
+    <img
+      class="profile-photo"
+      src="./zulfiqar.jpg.jpg"
+      alt="ڊاڪٽر ذوالفقار علي جلباڻي"
+      onerror="this.onerror=null;this.src='./zulfiqar.jpg';"
+    >
 
-  <h1>سنڌي AI</h1>
-  <div class="subtitle">
-    ڊاڪٽر ذوالفقار علي جلباڻي<br>
-    سنڌي ٻولي، الفابيٽ، ادب ۽ تاريخ لاءِ آن لائين مددگار
-  </div>
+    <h1>سنڌي AI علمي مرڪز</h1>
 
-  <section class="section">
-    <h2>سنڌي الفابيٽ</h2>
-    <p>ڪنهن به اکر تي ڪلڪ ڪريو ۽ ان سان لاڳاپيل مثال ڏسو.</p>
+    <p><strong>ڊاڪٽر ذوالفقار علي جلباڻي</strong></p>
 
-    <div class="alphabet" id="alphabet"></div>
+    <p>سنڌي ٻولي، ادب، تاريخ ۽ ثقافت جي ڄاڻ لاءِ هڪ ڊجيٽل پليٽ فارم</p>
 
-    <div id="letterInfo" aria-live="polite">
-      سنڌي اکر چونڊيو.
-    </div>
-  </section>
+    <span class="tagline">سنڌي ٻولي ــ اسان جي سڃاڻپ</span>
+  </header>
 
-  <section class="section">
-    <h2>سنڌي AI کان سوال پڇو</h2>
+  <main class="container">
 
-    <textarea id="question"
-      placeholder="پنهنجو سوال سنڌي، اردو يا انگريزيءَ ۾ لکو..."></textarea>
+    <section class="card">
+      <h2>🤖 سنڌي AI کان سوال پڇو</h2>
 
-    <button class="ask" id="askBtn" onclick="askAI()">
-      جواب حاصل ڪريو
-    </button>
+      <p class="description">
+        سنڌي ٻولي، شاهه لطيف، سنڌ جي تاريخ، ادب يا ثقافت بابت پنهنجو سوال لکو.
+      </p>
 
-    <div>
-      <button class="secondary"
-        onclick="setQuestion('شاهه عبداللطيف ڀٽائي ڪير هو؟')">
-        شاهه لطيف
-      </button>
-      <button class="secondary"
-        onclick="setQuestion('سنڌي ٻوليءَ جي تاريخ ٻڌايو')">
-        سنڌي ٻولي
-      </button>
-      <button class="secondary"
-        onclick="setQuestion('موهن جو دڙو ڇا آهي؟')">
-        موهن جو دڙو
-      </button>
-      <button class="secondary"
-        onclick="setQuestion('سنڌ جي ثقافت بابت ٻڌايو')">
-        سنڌي ثقافت
-      </button>
-      <button class="secondary"
-        onclick="setQuestion('ڊاڪٽر حامد علي خانائي ڪير هو؟')">
-        ڊاڪٽر حامد علي خانائي
-      </button>
-    </div>
+      <textarea
+        id="question"
+        placeholder="مثال: شاهه عبداللطيف ڀٽائي جي شاعريءَ جون خاصيتون بيان ڪريو..."
+        aria-label="پنهنجو سوال لکو"
+      ></textarea>
 
-    <div id="answer" aria-live="polite">
-      توهان جو سوال لکو ۽ جواب حاصل ڪريو.
-    </div>
-    <p class="note" id="status">
-      آن لائين AI جا جواب هميشه تصديق ڪرڻ گهرجن.
-    </p>
-  </section>
+      <div class="buttons">
+        <button class="btn btn-primary" id="askBtn" onclick="askAI()">
+          جواب حاصل ڪريو
+        </button>
 
-  <section class="section">
-    <h2>سنڌي لغت</h2>
-    <p>لفظن جون معنائون ڳولڻ لاءِ سنڌي لغت کوليو.</p>
-    <button class="secondary"
-      onclick="window.open('https://dic.sindhila.edu.pk/','_blank','noopener')">
-      سنڌي لغت کوليو
-    </button>
-  </section>
+        <button class="btn btn-secondary" onclick="clearQuestion()">
+          سوال صاف ڪريو
+        </button>
+      </div>
 
-  <div class="footer">
-    سنڌي ٻولي ۽ علم جي واڌاري لاءِ هڪ تعليمي ڪوشش
-  </div>
-</main>
+      <div class="samples">
+        <button class="sample" onclick="setQuestion('شاهه عبداللطيف ڀٽائي بابت ڄاڻ ڏيو')">
+          شاهه لطيف
+        </button>
 
-<script>
-const letters = [
-  ["ا","انار"], ["آ","آسمان"], ["ب","بادل"], ["ٻ","ٻار"],
-  ["ڀ","ڀٽائي"], ["ت","تارو"], ["ٿ","ٿر"], ["ٽ","ٽوپي"],
-  ["ٺ","ٺڪر"], ["ث","ثواب"], ["پ","پاڻي"], ["ڦ","ڦل"],
-  ["ج","جبل"], ["ڄ","ڄام"], ["جھ","جھرڻو"], ["ڃ","ڪونج"],
-  ["چ","چنڊ"], ["ڇ","ڇانوَ"], ["ح","حڪمت"], ["خ","خوشي"],
-  ["د","دل"], ["ڌ","ڌرتي"], ["ڏ","ڏينهن"], ["ڊ","ڊيل"],
-  ["ڍ","ڍنڍ"], ["ذ","ذهن"], ["ر","رستو"], ["ڙ","گهوڙو"],
-  ["ز","زندگي"], ["س","سنڌ"], ["ش","شاعري"], ["ص","صبر"],
-  ["ض","ضمير"], ["ط","طبيعت"], ["ظ","ظلم"], ["ع","علم"],
-  ["غ","غلام"], ["ف","فطرت"], ["ڦ","ڦل"], ["ق","قلم"],
-  ["ڪ","ڪتاب"], ["ک","کير"], ["گ","گل"], ["گھ","گھر"],
-  ["ڳ","ڳالهه"], ["ڱ","آڱر"], ["ل","لوڪ"], ["م","محبت"],
-  ["ن","نظم"], ["ڻ","ماڻهو"], ["و","وڻ"], ["ھ","ھوا"],
-  ["ء","سٺو"], ["ي","ياد"], ["ئ","ڪائي"]
-];
+        <button class="sample" onclick="setQuestion('سنڌي ٻوليءَ جي تاريخ بيان ڪريو')">
+          سنڌي ٻولي
+        </button>
 
-const alphabet = document.getElementById("alphabet");
-const letterInfo = document.getElementById("letterInfo");
+        <button class="sample" onclick="setQuestion('سنڌ جي ثقافت جون خاصيتون بيان ڪريو')">
+          سنڌي ثقافت
+        </button>
 
-letters.forEach(([letter, example]) => {
-  const button = document.createElement("button");
-  button.className = "letter";
-  button.textContent = letter;
-  button.setAttribute("aria-label", "اکر " + letter);
-  button.addEventListener("click", () => {
-    letterInfo.textContent =
-      "اکر: " + letter + " — مثال: " + example;
-    document.getElementById("question").value =
-      "سنڌي اکر " + letter + " جي وضاحت ۽ مثال ڏيو.";
-  });
-  alphabet.appendChild(button);
-});
+        <button class="sample" onclick="setQuestion('موهن جي دڙي جي تاريخ بابت ٻڌايو')">
+          موهن جو دڙو
+        </button>
 
-function setQuestion(text) {
-  document.getElementById("question").value = text;
-  document.getElementById("question").focus();
-}
+        <button class="sample" onclick="setQuestion('ڊاڪٽر حامد علي خانائي جي علمي خدمتن بابت تصديق ٿيل ڄاڻ ڏيو')">
+          ڊاڪٽر حامد علي خانائي
+        </button>
+      </div>
 
-const knowledge = [
-  {
-    keys: ["شاهه عبداللطيف ڀٽائي", "شاه لطيف", "shah latif"],
-    answer: "شاهه عبداللطيف ڀٽائي سنڌي ٻوليءَ جو مشهور صوفي شاعر هو. سندس شاعريءَ جو مجموعو شاهه جو رسالو سڏجي ٿو."
-  },
-  {
-    keys: ["موهن جو دڙو", "mohenjo daro"],
-    answer: "موهن جو دڙو سنڌ ۾ لاڙڪاڻي جي ڀرسان واقع سنڌو ماٿريءَ جي تهذيب جو اهم آثارِ قديمه وارو ماڳ آهي."
-  },
-  {
-    keys: ["سنڌي ٻوليءَ جي تاريخ", "سنڌي ٻولي", "sindhi language"],
-    answer: "سنڌي ٻولي سنڌ جي اهم ٻولي آهي. اها پنهنجي ادبي روايت، شاعري ۽ مختلف علائقائي لهجن جي ڪري سڃاتي وڃي ٿي. ان جي تاريخ بابت وڌيڪ تفصيل لاءِ لسانياتي تحقيق جا معتبر ڪتاب ڏسڻ گهرجن."
-  },
-  {
-    keys: ["سنڌ جي ثقافت", "سنڌي ثقافت", "sindhi culture"],
-    answer: "سنڌ جي ثقافت ۾ ٻولي، شاعري، موسيقي، اجرڪ، ٽوپي، روايتي هنر، مهمان نوازي ۽ تاريخي ورثو اهم آهن."
-  },
-  {
-    keys: ["ڊاڪٽر حامد علي خانائي", "حامد علي خانائي", "hamid ali khanai"],
-    answer: "هن ويب سائيٽ جي بنيادي ڄاڻ ۾ ڊاڪٽر حامد علي خانائي بابت تصديق ٿيل سوانح شامل ناهي. سندس زندگي، تعليم ۽ خدمتن بابت تفصيل معتبر تحقيقي ذريعن مان تصديق ڪري پوءِ شامل ڪرڻ گهرجن."
-  }
-];
+      <p id="status" class="status" aria-live="polite">
+        سوال لکو ۽ جواب حاصل ڪريو.
+      </p>
 
-function normalize(text) {
-  return text.toLowerCase()
-    .replace(/[؟?!،,.؛:]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
+      <h2>جواب</h2>
 
-function findKnowledge(question) {
-  const q = normalize(question);
-  for (const item of knowledge) {
-    if (item.keys.some(key => q.includes(normalize(key)))) {
-      return item.answer;
+      <div id="answer" class="answer" aria-live="polite">
+        توهان جو جواب هتي ظاهر ٿيندو.
+      </div>
+
+      <div class="buttons">
+        <button class="btn btn-secondary" onclick="copyAnswer()">
+          جواب ڪاپي ڪريو
+        </button>
+
+        <button class="btn btn-secondary" onclick="speakAnswer()">
+          🔊 جواب ٻڌو
+        </button>
+      </div>
+
+      <p class="notice">
+        نوٽ: آن لائن AI جي جوابن ۾ غلطي ٿي سگهي ٿي. علمي تحقيق ۽ حوالن لاءِ
+        مستند ڪتابن ۽ تحقيقي مقالن سان تصديق ضرور ڪريو.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>🔤 سنڌي الفابيٽ</h2>
+
+      <p class="description">
+        ڪنهن به اکر تي ڪلڪ ڪريو. اهو اکر سوال واري خاني ۾ شامل ٿي ويندو.
+      </p>
+
+      <div id="alphabet" class="alphabet"></div>
+
+      <div id="letterInfo" class="letter-info">
+        سنڌي اکر چونڊيو.
+      </div>
+    </section>
+
+    <section class="card dictionary">
+      <h2>📚 سنڌي ڊڪشنري</h2>
+
+      <p>
+        سنڌي لفظن جي معنيٰ ۽ ٻوليءَ بابت وڌيڪ ڄاڻ حاصل ڪرڻ لاءِ سنڌي لئنگئيج
+        اٿارٽي جي ڊڪشنري کوليو.
+      </p>
+
+      <a
+        class="btn btn-gold"
+        href="https://dic.sindhila.edu.pk/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        سنڌي ڊڪشنري کوليو
+      </a>
+    </section>
+
+    <section class="card">
+      <h2>ℹ️ هن ويب سائيٽ بابت</h2>
+
+      <p>
+        هي ويب سائيٽ سنڌي ٻولي، ادب، تاريخ ۽ ثقافت جي مطالعي کي آسان بنائڻ
+        لاءِ تيار ڪئي وئي آهي. ان ۾ سنڌي الفابيٽ، ڊڪشنري جو لنڪ، ۽ آن لائن
+        AI ذريعي سوالن جا جواب حاصل ڪرڻ جي سهولت شامل آهي.
+      </p>
+
+      <p>
+        AI جي سهولت انٽرنيٽ ۽ ٻاهرين سروس جي دستيابي تي دارومدار رکي ٿي.
+        هي ويب سائيٽ علمي تحقيق جو متبادل نه آهي.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p><strong>سنڌي AI علمي مرڪز</strong></p>
+    <p>ڊاڪٽر ذوالفقار علي جلباڻي</p>
+    <p>سنڌي ٻولي، ادب، تاريخ ۽ ثقافت جي واڌاري لاءِ</p>
+  </footer>
+
+  <script>
+    const questionBox = document.getElementById("question");
+    const answerBox = document.getElementById("answer");
+    const statusBox = document.getElementById("status");
+    const askButton = document.getElementById("askBtn");
+
+    const sindhiLetters = [
+      ["ا", "الف"],
+      ["ب", "ٻ"],
+      ["ٻ", "ٻ"],
+      ["ڀ", "ڀ"],
+      ["پ", "پ"],
+      ["ت", "ت"],
+      ["ٿ", "ٿ"],
+      ["ٽ", "ٽ"],
+      ["ٺ", "ٺ"],
+      ["ث", "ث"],
+      ["ج", "ج"],
+      ["ڄ", "ڄ"],
+      ["جھ", "جھ"],
+      ["چ", "چ"],
+      ["ڇ", "ڇ"],
+      ["ح", "ح"],
+      ["خ", "خ"],
+      ["د", "د"],
+      ["ڌ", "ڌ"],
+      ["ڏ", "ڏ"],
+      ["ڊ", "ڊ"],
+      ["ڍ", "ڍ"],
+      ["ذ", "ذ"],
+      ["ر", "ر"],
+      ["ڙ", "ڙ"],
+      ["ز", "ز"],
+      ["س", "س"],
+      ["ش", "ش"],
+      ["ص", "ص"],
+      ["ض", "ض"],
+      ["ط", "ط"],
+      ["ظ", "ظ"],
+      ["ع", "ع"],
+      ["غ", "غ"],
+      ["ف", "ف"],
+      ["ڦ", "ڦ"],
+      ["ق", "ق"],
+      ["ڪ", "ڪ"],
+      ["ک", "ک"],
+      ["گ", "گ"],
+      ["ڳ", "ڳ"],
+      ["گھ", "گھ"],
+      ["ل", "ل"],
+      ["م", "م"],
+      ["ن", "ن"],
+      ["ڻ", "ڻ"],
+      ["و", "و"],
+      ["ھ", "ھ"],
+      ["ء", "همزو"],
+      ["ي", "ي"],
+      ["ئ", "ئ"]
+    ];
+
+    const alphabetBox = document.getElementById("alphabet");
+
+    sindhiLetters.forEach(([letter, name]) => {
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "letter";
+      button.textContent = letter;
+      button.title = name;
+      button.setAttribute("aria-label", "سنڌي اکر " + letter);
+
+      button.addEventListener("click", () => {
+        questionBox.value += letter;
+        questionBox.focus();
+
+        document.getElementById("letterInfo").textContent =
+          "چونڊيل اکر: " + letter + " — " + name;
+      });
+
+      alphabetBox.appendChild(button);
+    });
+
+    function setQuestion(question) {
+      questionBox.value = question;
+      questionBox.focus();
     }
-  }
-  return null;
-}
 
-async function askAI() {
-  const question = document.getElementById("question").value.trim();
-  const answerBox = document.getElementById("answer");
-  const status = document.getElementById("status");
-  const askBtn = document.getElementById("askBtn");
-
-  if (!question) {
-    answerBox.textContent = "مهرباني ڪري پنهنجو سوال لکو.";
-    return;
-  }
-
-  askBtn.disabled = true;
-
-  try {
-    const localAnswer = findKnowledge(question);
-    if (localAnswer) {
-      answerBox.textContent = localAnswer;
-      status.textContent = "بنيادي ڄاڻ مان جواب؛ اهم حقيقتن جي تصديق ڪريو.";
-      return;
+    function clearQuestion() {
+      questionBox.value = "";
+      answerBox.textContent = "توهان جو جواب هتي ظاهر ٿيندو.";
+      statusBox.textContent = "سوال لکو ۽ جواب حاصل ڪريو.";
+      questionBox.focus();
     }
 
-    answerBox.textContent = "جواب حاصل ڪرڻ جي ڪوشش جاري آهي...";
-    status.textContent = "آن لائين AI سان رابطو جاري آهي.";
+    function getLocalAnswer(question) {
+      const q = question.toLowerCase();
 
-    const prompt = `
-توهان سنڌي ٻوليءَ جا مددگار آهيو.
-صاف، فطري ۽ معياري سنڌي عربي رسم الخط ۾ جواب ڏيو.
-اردو يا هنديءَ جا جملا استعمال نه ڪريو.
-غلط تاريخي حقيقتون يا نالا نه ٺاهيو.
-معلومات جي پڪ نه هجي ته صاف ٻڌايو.
-سوال: ${question}
-جواب سنڌيءَ ۾ ڏيو.
-`;
+      if (
+        q.includes("شاهه عبداللطيف") ||
+        q.includes("شاه لطيف") ||
+        q.includes("ڀٽائي")
+      ) {
+        return "شاهه عبداللطيف ڀٽائي سنڌي ٻوليءَ جو عظيم صوفي شاعر هو. سندس مشهور شعري مجموعو 'شاهه جو رسالو' آهي. سندس شاعريءَ ۾ عشق، انسانيت، روحانيت، جدوجهد، سچائي ۽ سنڌ جي ثقافت جا موضوع ملن ٿا. تفصيلي علمي مطالعي لاءِ شاهه جي رسالي جا مستند نسخا ۽ تحقيقي ڪتاب ڏسڻ گهرجن.";
+      }
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 30000);
+      if (
+        q.includes("موهن") ||
+        q.includes("مهن جو دڙو") ||
+        q.includes("موهن جو دڙو")
+      ) {
+        return "موهن جو دڙو سنڌ جي لاڙڪاڻي ضلعي ۾ واقع سنڌو ماٿريءَ جي قديم تهذيب جو اهم آثارِ قديمه وارو ماڳ آهي. هي ماڳ شهري رٿابندي، پڪين سرن جي عمارتن، نيڪال جي نظام ۽ قديم تهذيبي زندگيءَ جي ڪري مشهور آهي. ان جي تاريخ ۽ آثارن بابت تفصيل لاءِ آثارِ قديمه جي مستند تحقيق ڏسڻ ضروري آهي.";
+      }
 
-    let response;
-    try {
-      response = await fetch(
-        "https://text.pollinations.ai/" + encodeURIComponent(prompt),
-        { signal: controller.signal }
-      );
-    } finally {
-      clearTimeout(timeout);
+      if (
+        q.includes("سنڌي ٻولي") ||
+        q.includes("سنڌي زبان")
+      ) {
+        return "سنڌي ٻولي سنڌ ۽ پاڪستان جي اهم ٻولين مان هڪ آهي. سنڌيءَ جي پنهنجي ادبي روايت، شاعري، نثر، لوڪ ادب ۽ علمي ورثو آهي. سنڌي عربي-فارسي بنياد واري رسم الخط ۾ لکي وڃي ٿي. سنڌي ٻوليءَ جي تاريخ، لهجن ۽ لساني بناوت بابت صحيح معلومات لاءِ سنڌي لئنگئيج اٿارٽي ۽ مستند لسانياتي تحقيق مان مدد وٺڻ گهرجي.";
+      }
+
+      if (
+        q.includes("سنڌي ثقافت") ||
+        q.includes("سنڌ جي ثقافت") ||
+        q.includes("سنڌ جي تهذيب")
+      ) {
+        return "سنڌي ثقافت پنهنجي مهمان نوازي، اجرڪ، سنڌي ٽوپي، لوڪ موسيقي، شاعري، صوفي روايتن، هٿ جي هنر ۽ ٻوليءَ جي ڪري سڃاتي وڃي ٿي. سنڌ جي ثقافتي ورثي ۾ مختلف علائقائي روايتون ۽ تاريخي اثر شامل آهن. ثقافت وقت سان گڏ ترقي ڪندي رهي ٿي ۽ ان جي مختلف شڪلين جو احترام ڪرڻ گهرجي.";
+      }
+
+      if (
+        q.includes("حامد علي خانائي") ||
+        q.includes("ڊاڪٽر حامد علي خانائي")
+      ) {
+        return "ڊاڪٽر حامد علي خانائي بابت تفصيلي سوانح، تاريخن، علمي عهدن ۽ تصنيفن جي تصديق مستند ڪتابن، تحقيقي مقالن يا لاڳاپيل علمي اداري جي رڪارڊ مان ڪرڻ گهرجي. مان هن وقت سندس مڪمل سوانح جي هر تفصيل جي تصديق نٿو ڪري سگهان. جيڪڏهن توهان سندس ڪنهن ڪتاب يا مقالي جو نالو ڏيو ته ان بابت سوال وڌيڪ مخصوص ڪري سگهجي ٿو.";
+      }
+
+      if (
+        q.includes("ڊاڪٽر ذوالفقار علي جلباڻي") ||
+        q.includes("ذوالفقار علي جلباڻي")
+      ) {
+        return "ڊاڪٽر ذوالفقار علي جلباڻي بابت صحيح سوانحي ۽ علمي ڄاڻ لاءِ سندس ذاتي طور مهيا ڪيل سوانح، اداري جي پروفائيل، تحقيقي مقالن ۽ مستند علمي رڪارڊ کي بنياد بڻائڻ گهرجي. غير تصديق ٿيل ذاتي تفصيلن کي حقيقت طور پيش نه ڪرڻ گهرجي.";
+      }
+
+      return null;
     }
 
-    if (!response.ok) throw new Error("AI service unavailable");
+    async function askAI() {
+      const question = questionBox.value.trim();
 
-    const result = (await response.text()).trim();
-    if (!result) throw new Error("Empty answer");
+      if (!question) {
+        statusBox.textContent = "مهرباني ڪري پهريان پنهنجو سوال لکو.";
+        questionBox.focus();
+        return;
+      }
 
-    answerBox.textContent = result;
-    status.textContent = "آن لائين AI جو جواب؛ تاريخي ڄاڻ جي تصديق ڪريو.";
+      askButton.disabled = true;
+      askButton.textContent = "جواب ڳوليو پيو وڃي...";
+      statusBox.textContent = "جواب تيار ٿي رهيو آهي...";
+      answerBox.textContent = "مهرباني ڪري انتظار ڪريو.";
 
-  } catch (error) {
-    answerBox.textContent =
-      "معاف ڪجو، هن وقت آن لائين جواب حاصل نه ٿي سگهيو. " +
-      "هي سوال بنيادي ڄاڻ ۾ موجود ناهي. ٻيهر ڪوشش ڪريو يا سنڌي لغت کوليو.";
-    status.textContent =
-      "آن لائين سروس دستياب نه هئي. بنيادي ڄاڻ محدود آهي.";
-  } finally {
-    askBtn.disabled = false;
-  }
-}
+      try {
+        const localAnswer = getLocalAnswer(question);
 
-document.getElementById("question").addEventListener("keydown", function(event) {
-  if (event.key === "Enter" && !event.shiftKey) {
-    event.preventDefault();
-    askAI();
-  }
-});
-</script>
+        if (localAnswer) {
+          answerBox.textContent = localAnswer;
+          statusBox.textContent =
+            "بنيادي ڄاڻ واري جواب مان نتيجو ڏيکاريو ويو آهي.";
+          return;
+        }
+
+        const prompt =
+          "توهان سنڌي ٻوليءَ جا مددگار AI استاد آهيو. " +
+          "هيٺ ڏنل سوال جو جواب صاف، فطري ۽ صحيح سنڌي ٻوليءَ ۾ ڏيو. " +
+          "جواب ۾ ڪوڙيون تاريخون، فرضي ڪتاب، يا غير تصديق ٿيل حوالا نه ٺاهيو. " +
+          "جيڪڏهن پڪ نه هجي ته صاف ٻڌايو. جواب منظم ۽ تعليمي انداز ۾ ڏيو.\n\n" +
+          "سوال: " + question;
+
+        const endpoint =
+          "https://text.pollinations.ai/" + encodeURIComponent(prompt);
+
+        const response = await fetch(endpoint, {
+          method: "GET"
+        });
+
+        if (!response.ok) {
+          throw new Error("آن لائن سروس هن وقت جواب نه ڏنو.");
+        }
+
+        const result = await response.text();
+
+        if (!result || !result.trim()) {
+          throw new Error("خالي جواب مليو.");
+        }
+
+        answerBox.textContent = result.trim();
+        statusBox.textContent =
+          "آن لائن AI کان جواب مليو. اهم حقيقتن جي تصديق ضرور ڪريو.";
+
+      } catch (error) {
+        answerBox.textContent =
+          "معاف ڪجو، هن وقت آن لائن AI جواب حاصل نه ٿي سگهيو.\n\n" +
+          "ممڪن سبب:\n" +
+          "• انٽرنيٽ ڪنيڪشن ڪم نه پيو ڪري.\n" +
+          "• آن لائن AI سروس عارضي طور بند آهي.\n" +
+          "• سروس جي درخواست تي پابندي يا غلطي آهي.\n\n" +
+          "مهرباني ڪري ٻيهر ڪوشش ڪريو يا پنهنجو سوال ٿورو مختصر لکو.";
+
+        statusBox.textContent =
+          "آن لائن جواب حاصل ڪرڻ ۾ مسئلو ٿيو.";
+      } finally {
+        askButton.disabled = false;
+        askButton.textContent = "جواب حاصل ڪريو";
+      }
+    }
+
+    async function copyAnswer() {
+      const text = answerBox.textContent.trim();
+
+      if (!text || text === "توهان جو جواب هتي ظاهر ٿيندو.") {
+        statusBox.textContent = "ڪاپي ڪرڻ لاءِ اڃا ڪو جواب موجود ناهي.";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(text);
+        statusBox.textContent = "جواب ڪاپي ٿي ويو.";
+      } catch (error) {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+
+        const copied = document.execCommand("copy");
+        temp.remove();
+
+        statusBox.textContent = copied
+          ? "جواب ڪاپي ٿي ويو."
+          : "جواب ڪاپي نه ٿيو؛ مهرباني ڪري متن پاڻ چونڊيو.";
+      }
+    }
+
+    function speakAnswer() {
+      const text = answerBox.textContent.trim();
+
+      if (!text || !("speechSynthesis" in window)) {
+        statusBox.textContent =
+          "هن برائوزر ۾ آواز ذريعي پڙهڻ جي سهولت موجود ناهي.";
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "sd-PK";
+      utterance.rate = 0.85;
+
+      window.speechSynthesis.speak(utterance);
+
+      statusBox.textContent =
+        "آواز جي سهولت برائوزر ۽ ڊوائيس جي سنڌي آواز تي دارومدار رکي ٿي.";
+    }
+
+    questionBox.addEventListener("keydown", (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+        askAI();
+      }
+    });
+  </script>
+
 </body>
 </html>
