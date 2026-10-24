@@ -2,236 +2,229 @@
 <!DOCTYPE html>
 <html lang="sd" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ڊاڪٽر ذوالفقار علي جلباڻي | سنڌي AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ڊاڪٽر ذوالفقار علي جلباڻي | سنڌي AI</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      padding: 20px 12px;
-      font-family: "Noto Sans Arabic", "Arial", sans-serif;
-      background: #f0f7f1;
-      color: #173b27;
-      text-align: center;
-    }
+body {
+  margin: 0;
+  padding: 20px 12px;
+  background: #f0f7f1;
+  color: #173b27;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 22px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 5px 22px #00000012;
-    }
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 22px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px #0002;
+}
 
-    .profile {
-      margin: 0 auto 14px;
-    }
+.profile-photo {
+  width: 145px;
+  height: 145px;
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 4px solid #168044;
+}
 
-    .profile img {
-      display: block;
-      width: 140px;
-      height: 140px;
-      margin: auto;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center;
-      border: 4px solid #168044;
-      box-shadow: 0 4px 14px #0002;
-    }
+h1 {
+  color: #08763b;
+  line-height: 1.6;
+  font-size: 27px;
+}
 
-    h1 {
-      color: #08763b;
-      font-size: 25px;
-      line-height: 1.6;
-      margin: 8px 0;
-    }
+.subtitle {
+  line-height: 2;
+  color: #52665a;
+  margin-bottom: 20px;
+}
 
-    .subtitle {
-      color: #52665a;
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
+textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 14px;
+  font-family: inherit;
+  font-size: 17px;
+  border: 1px solid #b8d5c0;
+  border-radius: 12px;
+  text-align: right;
+}
 
-    textarea {
-      width: 100%;
-      min-height: 110px;
-      padding: 14px;
-      font-size: 17px;
-      font-family: inherit;
-      border: 1px solid #b8d5c0;
-      border-radius: 12px;
-      resize: vertical;
-      outline-color: #168044;
-      text-align: right;
-    }
+button {
+  padding: 12px 16px;
+  margin: 5px;
+  border: 0;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    button {
-      font-family: inherit;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 17px;
-      margin: 5px;
-    }
+.ask {
+  width: 100%;
+  background: #08763b;
+  color: white;
+  margin: 12px 0;
+}
 
-    .ask {
-      background: #08763b;
-      color: white;
-      width: 100%;
-      margin: 12px 0;
-    }
+.secondary {
+  background: #e3f2e7;
+  color: #075e30;
+}
 
-    .secondary {
-      background: #e3f2e7;
-      color: #075e30;
-    }
+#answer {
+  margin-top: 18px;
+  padding: 16px;
+  min-height: 55px;
+  background: #f4f8f4;
+  border-radius: 12px;
+  text-align: right;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 2;
+}
 
-    button:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
-
-    #answer {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 12px;
-      background: #f4f8f4;
-      text-align: right;
-      line-height: 2;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      min-height: 45px;
-    }
-
-    .footer {
-      font-size: 13px;
-      color: #68796d;
-      margin-top: 22px;
-      line-height: 1.8;
-    }
-
-    a { color: #08763b; }
-  </style>
+.footer {
+  margin-top: 20px;
+  color: #68796d;
+  font-size: 13px;
+  line-height: 2;
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
+<main class="container">
 
-    <div class="profile">
-      <img
-        src="./zulfiqar.jpg"
-        alt="ڊاڪٽر ذوالفقار علي جلباڻي"
-        onerror="this.onerror=null;this.src='https://placehold.co/140x140/e3f2e7/08763b?text=Zulfiqar';"
-      >
-    </div>
+  <img
+    class="profile-photo"
+    src="./zulfiqar.jpg.jpg"
+    alt="ڊاڪٽر ذوالفقار علي جلباڻي"
+  >
 
-    <h1>سنڌي AI</h1>
+  <h1>سنڌي AI</h1>
 
-    <div class="subtitle">
-      ڊاڪٽر ذوالفقار علي جلباڻي<br>
-      سنڌي ٻولي، ادب، تاريخ ۽ عام معلومات لاءِ آن لائين مددگار
-    </div>
+  <div class="subtitle">
+    ڊاڪٽر ذوالفقار علي جلباڻي<br>
+    سنڌي ٻولي، ادب، تاريخ ۽ عام معلومات لاءِ آن لائين مددگار
+  </div>
 
-    <textarea
-      id="question"
-      placeholder="پنهنجو سوال سنڌي، اردو يا انگريزيءَ ۾ لکو..."
-    ></textarea>
+  <textarea id="question"
+    placeholder="پنهنجو سوال سنڌي، اردو يا انگريزيءَ ۾ لکو..."></textarea>
 
-    <button class="ask" id="askBtn" onclick="askAI()">
-      جواب حاصل ڪريو
+  <button class="ask" id="askBtn" onclick="askAI()">
+    جواب حاصل ڪريو
+  </button>
+
+  <div>
+    <button class="secondary"
+      onclick="setQuestion('شاهه عبداللطيف ڀٽائي بابت ٻڌايو')">
+      شاهه لطيف
     </button>
 
-    <div>
-      <button class="secondary" onclick="setQuestion('شاهه عبداللطيف ڀٽائي بابت ٻڌايو')">
-        شاهه لطيف
-      </button>
-      <button class="secondary" onclick="setQuestion('سنڌي ٻوليءَ جي تاريخ ٻڌايو')">
-        سنڌي ٻولي
-      </button>
-      <button class="secondary" onclick="setQuestion('موهن جو دڙو ڇا آهي؟')">
-        موهن جو دڙو
-      </button>
-      <button class="secondary" onclick="setQuestion('سنڌ جي ثقافت بابت ٻڌايو')">
-        سنڌي ثقافت
-      </button>
-    </div>
+    <button class="secondary"
+      onclick="setQuestion('سنڌي ٻوليءَ جي تاريخ ٻڌايو')">
+      سنڌي ٻولي
+    </button>
 
-    <button class="secondary" onclick="window.open('https://dic.sindhila.edu.pk/','_blank','noopener')">
+    <button class="secondary"
+      onclick="setQuestion('موهن جو دڙو ڇا آهي؟')">
+      موهن جو دڙو
+    </button>
+
+    <button class="secondary"
+      onclick="setQuestion('سنڌ جي ثقافت بابت ٻڌايو')">
+      سنڌي ثقافت
+    </button>
+  </div>
+
+  <p>
+    <button class="secondary"
+      onclick="window.open('https://dic.sindhila.edu.pk/','_blank','noopener')">
       سنڌي لغت کوليو
     </button>
+  </p>
 
-    <div id="answer" aria-live="polite">
-      توهان جو سوال هتي جواب سان گڏ ظاهر ٿيندو.
-    </div>
+  <div id="answer" aria-live="polite">
+    توهان جو سوال لکو ۽ جواب حاصل ڪريو.
+  </div>
 
-    <div class="footer">
-      سنڌي ٻولي ۽ علم جي واڌاري لاءِ هڪ تعليمي ڪوشش
-    </div>
-  </main>
+  <div class="footer">
+    سنڌي ٻولي ۽ علم جي واڌاري لاءِ هڪ تعليمي ڪوشش
+  </div>
 
-  <script>
-    function setQuestion(text) {
-      document.getElementById("question").value = text;
-      document.getElementById("question").focus();
+</main>
+
+<script>
+function setQuestion(text) {
+  document.getElementById("question").value = text;
+  document.getElementById("question").focus();
+}
+
+async function askAI() {
+  const question =
+    document.getElementById("question").value.trim();
+
+  const answerBox = document.getElementById("answer");
+  const askBtn = document.getElementById("askBtn");
+
+  if (!question) {
+    answerBox.textContent = "مهرباني ڪري پنهنجو سوال لکو.";
+    return;
+  }
+
+  askBtn.disabled = true;
+  answerBox.textContent = "جواب حاصل ڪيو پيو وڃي، مهرباني ڪري انتظار ڪريو...";
+
+  const prompt =
+    "توهان سنڌي ٻوليءَ جا مددگار آهيو. هر سوال جو جواب سنڌي عربي رسم الخط ۾ ڏيو. " +
+    "واضح، احترام وارو ۽ مناسب تفصيل سان جواب ڏيو. غير يقيني ڳالهه کي حقيقت طور پيش نه ڪريو. " +
+    "سوال: " + question;
+
+  try {
+    const url =
+      "https://text.pollinations.ai/" + encodeURIComponent(prompt);
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Online service unavailable");
     }
 
-    async function askAI() {
-      const question = document.getElementById("question").value.trim();
-      const answerBox = document.getElementById("answer");
-      const button = document.getElementById("askBtn");
+    const result = (await response.text()).trim();
 
-      if (!question) {
-        answerBox.textContent = "مهرباني ڪري پهرين پنهنجو سوال لکو.";
-        return;
-      }
-
-      button.disabled = true;
-      answerBox.textContent = "مهرباني ڪري انتظار ڪريو، جواب تيار ٿي رهيو آهي...";
-
-      const prompt =
-        "توهان سنڌي ٻوليءَ جا مددگار آهيو. هر سوال جو جواب سنڌي عربي رسم الخط ۾ ڏيو. " +
-        "جواب درست، واضح، احترام وارو ۽ مناسب تفصيل سان هجي. " +
-        "جيڪڏهن سوال سنڌي ادب، تاريخ، ثقافت يا عام معلومات بابت هجي ته وضاحت سان جواب ڏيو. " +
-        "جيڪڏهن پڪ نه هجي ته غير يقيني ڳالهه کي حقيقت طور پيش نه ڪريو. " +
-        "سوال: " + question;
-
-      try {
-        const url = "https://text.pollinations.ai/" + encodeURIComponent(prompt);
-        const response = await fetch(url);
-
-        if (!response.ok) {
-          throw new Error("Online service error");
-        }
-
-        const result = await response.text();
-        const cleanResult = result.trim();
-
-        if (!cleanResult) {
-          throw new Error("Empty answer");
-        }
-
-        answerBox.textContent = cleanResult;
-      } catch (error) {
-        answerBox.textContent =
-          "معاف ڪجو، هن وقت آن لائين جواب حاصل نه ٿي سگهيو. " +
-          "مهرباني ڪري انٽرنيٽ چيڪ ڪريو ۽ ٻيهر ڪوشش ڪريو. " +
-          "سنڌي لغت لاءِ مٿي ڏنل لغت وارو بٽڻ استعمال ڪريو.";
-      } finally {
-        button.disabled = false;
-      }
+    if (!result) {
+      throw new Error("No answer received");
     }
 
-    document.getElementById("question").addEventListener("keydown", function(event) {
-      if (event.key === "Enter" && !event.shiftKey) {
-        event.preventDefault();
-        askAI();
-      }
-    });
-  </script>
+    answerBox.textContent = result;
+
+  } catch (error) {
+    answerBox.textContent =
+      "معاف ڪجو، هن وقت آن لائين جواب حاصل نه ٿي سگهيو. " +
+      "انٽرنيٽ چيڪ ڪريو ۽ ٻيهر ڪوشش ڪريو. سنڌي لغت لاءِ لغت وارو بٽڻ استعمال ڪريو.";
+  } finally {
+    askBtn.disabled = false;
+  }
+}
+
+document.getElementById("question").addEventListener("keydown", function(event) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    askAI();
+  }
+});
+</script>
 </body>
 </html>
