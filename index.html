@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="سنڌي ٻولي، ادب، تاريخ ۽ عام معلومات لاءِ سنڌي AI مددگار">
 <title>ڊاڪٽر ذوالفقار علي جلباڻي | سنڌي AI</title>
 
 <style>
@@ -59,6 +60,7 @@ textarea {
   border: 1px solid #b8d5c0;
   border-radius: 12px;
   text-align: right;
+  direction: auto;
 }
 
 button {
@@ -69,6 +71,11 @@ button {
   font-family: inherit;
   font-size: 16px;
   cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
 .ask {
@@ -90,6 +97,7 @@ button {
   background: #f4f8f4;
   border-radius: 12px;
   text-align: right;
+  direction: rtl;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   line-height: 2;
@@ -101,6 +109,18 @@ button {
   font-size: 13px;
   line-height: 2;
 }
+
+.note {
+  color: #65776a;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@media (max-width: 480px) {
+  .container { padding: 16px; }
+  h1 { font-size: 24px; }
+  button { font-size: 15px; }
+}
 </style>
 </head>
 
@@ -109,8 +129,9 @@ button {
 
   <img
     class="profile-photo"
-    src="./zulfiqar.jpg.jpg"
+    src="./zulfiqar.jpg"
     alt="ڊاڪٽر ذوالفقار علي جلباڻي"
+    onerror="this.style.display='none'"
   >
 
   <h1>سنڌي AI</h1>
@@ -121,7 +142,8 @@ button {
   </div>
 
   <textarea id="question"
-    placeholder="پنهنجو سوال سنڌي، اردو يا انگريزيءَ ۾ لکو..."></textarea>
+    placeholder="پنهنجو سوال سنڌي، اردو يا انگريزيءَ ۾ لکو..."
+    aria-label="پنهنجو سوال لکو"></textarea>
 
   <button class="ask" id="askBtn" onclick="askAI()">
     جواب حاصل ڪريو
@@ -147,6 +169,16 @@ button {
       onclick="setQuestion('سنڌ جي ثقافت بابت ٻڌايو')">
       سنڌي ثقافت
     </button>
+
+    <button class="secondary"
+      onclick="setQuestion('علم ۽ ڄاڻ جي اهميت سنڌيءَ ۾ بيان ڪريو')">
+      علم ۽ ڄاڻ
+    </button>
+
+    <button class="secondary"
+      onclick="setQuestion('Knowledge لفظ جي سنڌي معنيٰ مثال سان ٻڌايو')">
+      لفظن جون معنائون
+    </button>
   </div>
 
   <p>
@@ -159,6 +191,10 @@ button {
   <div id="answer" aria-live="polite">
     توهان جو سوال لکو ۽ جواب حاصل ڪريو.
   </div>
+
+  <p class="note">
+    بهتر نتيجن لاءِ سوال واضح لکو. آن لائين جواب جي درستگيءَ جي تصديق ڪرڻ ضروري آهي.
+  </p>
 
   <div class="footer">
     سنڌي ٻولي ۽ علم جي واڌاري لاءِ هڪ تعليمي ڪوشش
@@ -173,9 +209,7 @@ function setQuestion(text) {
 }
 
 async function askAI() {
-  const question =
-    document.getElementById("question").value.trim();
-
+  const question = document.getElementById("question").value.trim();
   const answerBox = document.getElementById("answer");
   const askBtn = document.getElementById("askBtn");
 
@@ -185,18 +219,49 @@ async function askAI() {
   }
 
   askBtn.disabled = true;
-  answerBox.textContent = "جواب حاصل ڪيو پيو وڃي، مهرباني ڪري انتظار ڪريو...";
+  answerBox.textContent =
+    "جواب حاصل ڪيو پيو وڃي، مهرباني ڪري انتظار ڪريو...";
 
-  const prompt =
-    "توهان سنڌي ٻوليءَ جا مددگار آهيو. هر سوال جو جواب سنڌي عربي رسم الخط ۾ ڏيو. " +
-    "واضح، احترام وارو ۽ مناسب تفصيل سان جواب ڏيو. غير يقيني ڳالهه کي حقيقت طور پيش نه ڪريو. " +
-    "سوال: " + question;
+  const prompt = `
+توهان سنڌي ٻوليءَ جا ماهر ۽ سنڌي AI جا مددگار آهيو.
+
+اهم هدايتون:
+1. هر سوال جو جواب صاف، فطري، صحيح ۽ معياري سنڌي ٻوليءَ ۾ ڏيو.
+2. سنڌي عربي رسم الخط استعمال ڪريو، رومن سنڌي نه لکو.
+3. اردو يا هنديءَ ۾ جواب نه ڏيو. سنڌي گرامر ۽ سنڌي لفظن جو صحيح استعمال ڪريو.
+4. سنڌي لفظن جي املا، جملن جي بناوت ۽ ٻوليءَ جي روانيءَ جو خاص خيال رکو.
+5. سوال سنڌي، اردو يا انگريزيءَ ۾ هجي، جواب سنڌيءَ ۾ ڏيو.
+6. شخصيتن، تاريخ، ڪتابن ۽ واقعن بابت غير تصديق ٿيل معلومات نه ٺاهيو.
+7. جيڪڏهن معلومات پڪ سان معلوم نه هجي ته صاف ٻڌايو.
+8. سوال جي ضرورت مطابق آسان وضاحت ۽ مثال ڏيو.
+9. جيڪڏهن انگريزي لفظ جي معنيٰ پڇي وڃي ته سنڌي معنيٰ ۽ مثال ڏيو.
+10. جواب مختصر، لاڳاپيل ۽ پڙهڻ ۾ آسان رکو.
+11. جواب ۾ سنڌيءَ جي معياري ۽ درست لکڻيءَ کي ترجيح ڏيو.
+12. صرف سوال جو جواب ڏيو؛ غير ضروري تمهيد نه لکو.
+
+استعمال ڪندڙ جو سوال:
+${question}
+
+جواب سنڌي عربي رسم الخط ۾ ڏيو:
+`;
 
   try {
     const url =
       "https://text.pollinations.ai/" + encodeURIComponent(prompt);
 
-    const response = await fetch(url);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 45000);
+
+    let response;
+
+    try {
+      response = await fetch(url, {
+        method: "GET",
+        signal: controller.signal
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
 
     if (!response.ok) {
       throw new Error("Online service unavailable");
@@ -213,7 +278,8 @@ async function askAI() {
   } catch (error) {
     answerBox.textContent =
       "معاف ڪجو، هن وقت آن لائين جواب حاصل نه ٿي سگهيو. " +
-      "انٽرنيٽ چيڪ ڪريو ۽ ٻيهر ڪوشش ڪريو. سنڌي لغت لاءِ لغت وارو بٽڻ استعمال ڪريو.";
+      "مهرباني ڪري انٽرنيٽ چيڪ ڪريو ۽ ٻيهر ڪوشش ڪريو. " +
+      "لفظن جي معنائن لاءِ سنڌي لغت وارو بٽڻ استعمال ڪريو.";
   } finally {
     askBtn.disabled = false;
   }
