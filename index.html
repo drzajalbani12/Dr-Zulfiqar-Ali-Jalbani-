@@ -5,61 +5,61 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ڊاڪٽر ذوالفقار علي جلباڻي | سنڌي AI</title>
-
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;padding:15px;
-  font-family:Arial,sans-serif;
-  background:#e8f5e9;
-  display:flex;justify-content:center;
+  margin:0;padding:15px;font-family:Arial,sans-serif;
+  background:#e8f5e9;display:flex;justify-content:center
 }
 .box{
-  background:white;max-width:700px;width:100%;
-  padding:22px;border-radius:20px;
-  border-top:6px solid #1b7a3d;
-  box-shadow:0 5px 20px #0002;
+  background:white;max-width:700px;width:100%;padding:22px;
+  border-radius:20px;border-top:6px solid #1b7a3d;
+  box-shadow:0 5px 20px #0002
 }
 h1{text-align:center;color:#174d2b;font-size:25px}
 h3{text-align:center;color:#1b7a3d}
 p{text-align:center;line-height:1.8}
 input{
   width:100%;padding:14px;margin-top:12px;
-  border:2px solid #ccc;border-radius:10px;
-  font-size:17px;direction:rtl;
+  border:2px solid #ccc;border-radius:10px;font-size:17px;
+  direction:rtl
 }
 button{
-  width:100%;padding:13px;margin-top:10px;
-  border:0;border-radius:10px;
-  background:#1b7a3d;color:white;
-  font-size:17px;cursor:pointer;
+  width:100%;padding:13px;margin-top:10px;border:0;
+  border-radius:10px;background:#1b7a3d;color:white;
+  font-size:17px;cursor:pointer
 }
 .keys{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
 .keys button{
-  flex:1 1 40%;width:auto;
-  background:#e8f5e9;color:#165c30;
-  border:1px solid #1b7a3d;font-size:14px;
+  flex:1 1 40%;width:auto;background:#e8f5e9;
+  color:#165c30;border:1px solid #1b7a3d;font-size:14px
 }
 #ans{
   display:none;margin-top:16px;padding:16px;
   background:#f1f8f1;border-right:5px solid #1b7a3d;
-  border-radius:10px;white-space:pre-wrap;
-  line-height:2;direction:rtl;text-align:right;
-  overflow-wrap:anywhere;
+  border-radius:10px;white-space:pre-wrap;line-height:2;
+  direction:rtl;text-align:right;overflow-wrap:anywhere
 }
+#dictLink{
+  display:none;text-align:center;margin-top:12px;padding:12px;
+  background:#e8f5e9;border-radius:10px
+}
+#dictLink a{color:#165c30;font-weight:bold}
 footer{text-align:center;color:#777;font-size:12px;margin-top:20px}
 </style>
 </head>
-
 <body>
 <div class="box">
 <h1>ڊاڪٽر ذوالفقار علي جلباڻي</h1>
 <h3>سنڌي AI مددگار</h3>
-<p>سنڌي ٻولي، ادب، تاريخ ۽ ثقافت بابت سوال پڇو.</p>
+<p>سنڌي ٻولي، ادب، تاريخ، ثقافت ۽ لفظن جي معنيٰ بابت سوال پڇو.</p>
 
-<input id="q" placeholder="هتي سنڌيءَ ۾ سوال لکو...">
+<input id="q" placeholder="سنڌي لفظ يا سوال لکو...">
 
 <button onclick="ask()">جواب حاصل ڪريو</button>
+<button onclick="dictionarySearch()" style="background:#1769aa">
+لغت ۾ لفظ جي معنيٰ ڳوليو
+</button>
 
 <div class="keys">
 <button onclick="setQ('شاهه عبداللطيف ڀٽائي ڪير هو؟')">شاهه لطيف</button>
@@ -71,6 +71,7 @@ footer{text-align:center;color:#777;font-size:12px;margin-top:20px}
 </div>
 
 <div id="ans" aria-live="polite"></div>
+<div id="dictLink"></div>
 
 <footer>ڊاڪٽر ذوالفقار علي جلباڻي جو سنڌي AI منصوبو</footer>
 </div>
@@ -78,32 +79,32 @@ footer{text-align:center;color:#777;font-size:12px;margin-top:20px}
 <script>
 const knowledge = [
 {
-keys:["شاهه عبداللطيف","شاهه لطيف","ڀٽائي","shah latif"],
-answer:"شاهه عبداللطيف ڀٽائي سنڌ جو عظيم صوفي شاعر هو. سندس مشهور ڪتاب شاهه جو رسالو آهي. سندس شاعريءَ ۾ محبت، انسانيت، سچائي، صبر ۽ روحانيت جا موضوع ملن ٿا. شاهه لطيف سنڌي ادب ۽ ثقافت ۾ اهم مقام رکي ٿو."
+keys:["شاهه عبداللطيف","شاهه لطيف","ڀٽائي"],
+answer:"شاهه عبداللطيف ڀٽائي سنڌ جو عظيم صوفي شاعر هو. سندس مشهور ڪتاب شاهه جو رسالو آهي. سندس شاعريءَ ۾ محبت، انسانيت، سچائي، صبر ۽ روحانيت جا موضوع ملن ٿا."
 },
 {
 keys:["سنڌي ٻولي","ٻولي جي تاريخ","سنڌي زبان"],
-answer:"سنڌي ٻولي سنڌ جي شاهوڪار ٻولين مان هڪ آهي. ان جي پنهنجي رسم الخط، شاعري، نثر ۽ علمي روايت آهي. سنڌي ادب ۾ صوفي شاعري، لوڪ ڪهاڻيون ۽ تاريخي لکڻيون اهم حيثيت رکن ٿيون."
+answer:"سنڌي ٻولي سنڌ جي شاهوڪار ٻولين مان هڪ آهي. ان جي پنهنجي رسم الخط، شاعري، نثر ۽ علمي روايت آهي. سنڌي ادب ۾ صوفي شاعري، لوڪ ڪهاڻيون ۽ تاريخي لکڻيون اهم آهن."
 },
 {
 keys:["سنڌي ثقافت","ثقافت"],
-answer:"سنڌي ثقافت مهمان نوازي، محبت، صوفي فڪر، لوڪ موسيقي، شاعري، اجرڪ ۽ سنڌي ٽوپيءَ جي ڪري مشهور آهي. سنڌ جي ثقافت امن، ڀائيچاري ۽ انسانيت جو پيغام ڏئي ٿي."
+answer:"سنڌي ثقافت مهمان نوازي، محبت، صوفي فڪر، لوڪ موسيقي، شاعري، اجرڪ ۽ سنڌي ٽوپيءَ جي ڪري مشهور آهي."
 },
 {
 keys:["موهن جو دڙو","موئن جو دڙو"],
-answer:"موهن جو دڙو سنڌ جي لاڙڪاڻي ضلعي ۾ واقع قديم آثارن وارو ماڳ آهي. اهو سنڌو ماٿريءَ جي تهذيب سان لاڳاپيل آهي. ان جي شهري منصوبابندي، گهرن ۽ نيڪال جي نظام سبب ان کي تاريخ ۾ اهم مقام حاصل آهي."
+answer:"موهن جو دڙو سنڌ ۾ واقع سنڌو ماٿريءَ جي قديم تهذيب جو اهم آثار قديمه وارو ماڳ آهي. ان جي شهري منصوبابندي ۽ نيڪال جو نظام خاص اهميت رکن ٿا."
 },
 {
 keys:["اجرڪ","سنڌي ٽوپي","ٽوپي"],
 answer:"اجرڪ ۽ سنڌي ٽوپي سنڌ جي ثقافتي سڃاڻپ جا اهم نشان آهن. اهي سنڌي روايتن، عزت، محبت ۽ مهمان نوازيءَ جي نمائندگي ڪن ٿا."
 },
 {
-keys:["سنڌ جي تاريخ","سنڌ جي باري ۾","سنڌ"],
-answer:"سنڌ ڏکڻ ايشيا جو هڪ تاريخي خطو آهي، جيڪو سنڌو درياهه سان گهرو تعلق رکي ٿو. موهن جو دڙو، صوفي شاعرن جو ڪلام، سنڌي ٻولي ۽ روايتي هنر سنڌ جي تاريخ ۽ ثقافت جا اهم حصا آهن."
+keys:["سنڌ جي تاريخ"],
+answer:"سنڌ هڪ قديم تاريخي خطو آهي، جيڪو سنڌو درياهه سان گهرو تعلق رکي ٿو. موهن جو دڙو، سنڌي ٻولي، صوفي شاعري ۽ روايتي هنر سنڌ جي تاريخ جا اهم حصا آهن."
 },
 {
-keys:["سلام","السلام عليڪم","سائين"],
-answer:"وعليڪم السلام! ڀلي ڪري آيا. سنڌي ٻولي، ادب، تاريخ ۽ ثقافت بابت پنهنجو سوال پڇو. مان موجود معلومات مطابق مدد ڪندس."
+keys:["سلام","السلام عليڪم"],
+answer:"وعليڪم السلام! ڀلي ڪري آيا. پنهنجو سوال پڇو، مان موجود معلومات مطابق مدد ڪندس."
 }
 ];
 
@@ -112,17 +113,30 @@ function setQ(value){
   ask();
 }
 
+function dictionarySearch(){
+  const word=document.getElementById("q").value.trim();
+  if(!word){
+    alert("مهرباني ڪري پهرين لفظ لکو.");
+    return;
+  }
+  const url="https://dic.sindhila.edu.pk/index.php?txtsrch="
+            +encodeURIComponent(word);
+  window.open(url,"_blank","noopener");
+}
+
 function ask(){
   const input=document.getElementById("q");
   const answerBox=document.getElementById("ans");
+  const dictBox=document.getElementById("dictLink");
   const question=input.value.trim().toLowerCase();
 
   if(!question){
-    alert("مهرباني ڪري سوال لکو.");
+    alert("مهرباني ڪري سوال يا لفظ لکو.");
     return;
   }
 
   answerBox.style.display="block";
+  dictBox.style.display="block";
 
   const found=knowledge.find(item =>
     item.keys.some(key => question.includes(key.toLowerCase()))
@@ -133,10 +147,17 @@ function ask(){
       "\n\n— ڊاڪٽر ذوالفقار علي جلباڻي";
   }else{
     answerBox.textContent=
-      "معاف ڪجو، هن سوال جو جواب هن وقت منهنجي محفوظ سنڌي معلومات ۾ موجود ناهي.\n\n"+
-      "مهرباني ڪري شاهه لطيف، سنڌي ٻولي، سنڌي ثقافت، موهن جو دڙو يا اجرڪ بابت سوال پڇو.\n\n"+
-      "نوٽ: هي آف لائن ورزن آهي؛ هر نئين سوال جو جواب ڏيڻ لاءِ آن لائن AI سروس ڳنڍڻ ضروري آهي.";
+      "هن سوال جو جواب هن وقت منهنجي محفوظ معلومات ۾ موجود ناهي. توهان هيٺ ڏنل لنڪ ذريعي سنڌي لئنگئيج اٿارٽيءَ جي لغت ۾ لفظ يا عبارت ڳولي سگهو ٿا.\n\n"+
+      "نوٽ: هر قسم جي سوال جو AI جواب ڏيڻ لاءِ الڳ آن لائين AI سروس ڳنڍڻ ضروري آهي.";
   }
+
+  const link=document.createElement("a");
+  link.href="https://dic.sindhila.edu.pk/index.php?txtsrch="
+            +encodeURIComponent(input.value.trim());
+  link.target="_blank";
+  link.rel="noopener noreferrer";
+  link.textContent="سنڌي لغت ۾ ڳولا کوليو";
+  dictBox.replaceChildren(link);
 }
 
 document.getElementById("q").addEventListener("keydown",function(event){
